@@ -1,0 +1,150 @@
+/* .container.navbar-toggler.mainLogo {
+	background: url(/resources/suit/img/logo_2.png);
+	display: block;
+	height: 100%;
+	overflow: hidden;
+	text-indent: -20000px;
+	width: 100%;
+} */
+
+.container{
+	color: white;
+}
+
+figure figcaption p{
+	font-weight: bold;
+}
+
+div .menu_title{
+	color: black;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* 썸네일 이미지 출력할때 사용하는 css */
+.suit.thumbnail {
+	background-color: gray;
+	margin: 10px;
+	width: 50px;
+	height: 50px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.suit.thumbnail.circle {
+	border-radius: 100%;
+	width: 30px;
+	height: 30px;
+	border-color: black;
+	border-style: solid;
+	border-width: thin medium;
+}
+
+.exec{
+    
+}
+
+/* 핀터레스트 스타일 레이아웃 */
+body {
+    padding-top: 150px;
+    padding-bottom: 70px;
+    /*  
+    background: url(/resources/suit/img/bg_1.jpg);
+	background-size: cover;
+	 */
+	background-color: black; 
+	font-family: Calluna, Arial, sans-serif;
+}
+
+#suitcolumns {
+	column-width: 320px;
+	column-gap: 15px;
+	width: 90%;
+	max-width: 1100px;
+	margin: 50px auto;
+}
+
+div#suitcolumns figure {
+	background: #fefefe;
+	border: 2px solid #fcfcfc;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	margin: 0 2px 15px;
+	padding: 15px;
+	padding-bottom: 10px;
+	transition: opacity .4s ease-in-out;
+	display: inline-block;
+	column-break-inside: avoid;
+}
+
+div#suitcolumns figure img {
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
+}
+
+div#suitcolumns figure figcaption {
+	font-size: .9rem;
+	color: #444;
+	line-height: 1.5;
+}
+
+div#suitcolumns small {
+	font-size: 1rem;
+	float: right;
+	text-transform: uppercase;
+	color: #aaa;
+}
+
+div#suitcolumns small a {
+	color: #666;
+	text-decoration: none;
+	transition: .4s color;
+}
+
+div#suitcolumns:hover figure:not(:hover) {
+	opacity: 0.4;
+}
+
+@media screen and (max-width: 750px) {
+	#suitcolumns {
+		column-gap: 0px;
+	}
+	#suitcolumns figure {
+		width: 100%;
+	}
+}
+/* 핀터레스트 스타일 레이아웃 끝 */
+
+/* 로그인 체크 css*/
+#signupForm label[for] {
+	width: 120px;
+	display: inline-block;
+}
+
+#signupForm label {
+	font-size: 14px;
+	padding: 5px 0;
+}
+
+#signupForm input {
+	border: 1px solid #ccc;
+	padding: 2px 5px;
+	vertical-align: middle;
+}
+
+/** 입력값이 적절하지 않은 입력 요소에 대한 CSS 정의 */
+#signupForm input.error, #signupForm textarea.error {
+	border: 1px dashed red;
+}
+
+/** 에러메시지가 표시되는 동적 요소에 대한 CSS 정의 */
+#signupForm label.error {
+	color: red;
+	width: auto;
+	font-size: 12px;
+	padding: 0 10px;
+}
+/* 로그인 체크 css끝 */

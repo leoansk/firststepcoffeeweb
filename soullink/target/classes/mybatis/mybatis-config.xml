@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 만들어진 mybatis-config를 편하게 사용하기 위해선 xml 파일의 dtd나 xml 스키마라를 것이 필요하다 그래서 위에 상단에 dtd를 작성해줬다 -->
+
+<configuration>
+
+	<!-- 마이바티스의 작동 규칙정의
+     -->
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+    </settings>
+     <!--xml mapper를 이용하는데 있어서 패키지까지 포함된 클래스명을 작성하는데 번거로우니
+     	typeAliases를 이용하면 parameterType,resultType에 사용하는 클래스의 이름
+     	즉 com.ansk.web.domain을 생략 가능하다
+       -->
+    <typeAliases>
+    	<package name="com.ansk.web.domain"/>
+    </typeAliases> 
+    
+</configuration>
