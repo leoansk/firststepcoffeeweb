@@ -50,8 +50,8 @@
 	</bean>
 	
 	<!--밑에 있는 경로에서 @Repository애노테이션 DAO를 찾는다  -->
-	<context:component-scan base-package="com.ansk.web.controller.persistence"></context:component-scan>
-	<context:component-scan base-package="com.ansk.web.controller.service"></context:component-scan>
+	<context:component-scan base-package="com.ansk.web.persistence"></context:component-scan>
+	<context:component-scan base-package="com.ansk.web.service"></context:component-scan>
 	
 	<!-- aop관련 -->
 	<context:component-scan base-package="com.ansk.web.aop"></context:component-scan>

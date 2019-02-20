@@ -27,7 +27,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="#">
-				<img class="mainLogo" src="resources/suit/img/final_white.png" height="100px">
+				<img class="mainLogo" src="../resources/suit/img/final_white.png" height="100px">
 			</a>
 			
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
 						<a class="nav-link" href="../menuPage">MENU</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="">BOARD</a>
+						<a class="nav-link" href="../boards/list">BOARD</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="">CONTACT US</a>
