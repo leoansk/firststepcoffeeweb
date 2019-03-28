@@ -54,6 +54,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="../joinMembership">회원가입</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../otzang/otzangTestPage">옷쨩</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
