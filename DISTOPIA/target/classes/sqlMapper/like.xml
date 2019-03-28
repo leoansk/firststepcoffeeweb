@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org/DTD Mapper 3.0/EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="likehome">
+	 
+	<select id="selectUserNumber" parameterType="String" resultType="Integer">
+<!-- 	유저번호 검색 -->
+		select us_number
+		from users
+		where us_id=#{usId}
+	</select>
+	
+	<select id="selectLike" parameterType="String" resultType="model.Like"><!-- 관심목록보기 -->
+		select p.pro_photo as proPhoto, p.pro_name as proName, p.pro_modelname as proModelname, 
+		p.pro_price as proPrice
+		from likes l, product p, users u
+		where l.us_number = u.us_number and l.pro_number = p.pro_number
+		and l.us_number=(select us_number as usNumber from users where us_id=#{usId})
+	</select>
+	
+	<select id="selectCheck" parameterType="model.Temp" resultType="model.Check"><!-- 비교하기 -->
+		select p.pro_name as proName, p.pro_price as proPrice, p.pro_explain as proExplain,
+			p.pro_modelname as proModelname, p.pro_maker as proMaker, p.pro_photo as proPhoto,
+			l.like_memo as likeMemo
+		from product p, likes l
+		where l.pro_number = p.pro_number and l.us_number=(select us_number from users
+		where us_id=#{usId})and p.pro_name=#{check}
+	</select>
+	
+	<update id="updateMemo" parameterType="model.Memo"><!-- 비교메모 업데이트 -->
+		update likes set like_memo = #{likeMemo}
+		where us_number=(select us_number
+				from users
+				where us_id=#{usId})
+			and pro_number=(select pro_number
+				from product
+				where pro_name=#{proName})
+	</update>
+	
+	<delete id="deleteLike" parameterType="model.DeleteLike"><!-- 관심목록에서 삭제 -->
+		delete from likes 
+		where us_number=(select us_number
+				from users
+				where us_id=#{usId})
+			and pro_number=(select pro_number
+				from product
+				where pro_Modelname=#{proModelname})
+	</delete>
+	
+<!-- 	이미지 저장 -->
+	<update id="updateImage" parameterType="hashmap">
+		update users set us_photo=#{usPhoto}
+		where us_id=#{loginId}
+	</update>
+	
+<!-- 	이미지 불러오기 -->
+	<resultMap type="java.util.HashMap" id="imageMap">
+		<result property="picture" column="US_PHOTO" javaType="[B" jdbcType="BLOB"/>
+	</resultMap>
+	<select id="selectUuserPhoto" resultMap="imageMap" parameterType="String">
+		select us_photo from users where us_id = #{loginId}
+	</select>
+
+<!-- 
+	<select id="selectUserNumber" parameterType="String" resultType="Integer">유저번호 찾기
+		select us_number as usNumber
+		from users
+		where us_id=#{usId}
+	</select>
+	<select id="selectLike" parameterType="Integer" resultType="model.Like">목록보기
+		select p.pro_photo as proPhoto, p.pro_name as proName, p.pro_modelname as proModelname, p.pro_price as proPrice
+		from likes l, product p, users u
+		where l.us_number = u.us_number
+			and l.pro_number = p.pro_number
+			and l.us_number=#{usNumber}
+	</select>
+ -->
+</mapper>

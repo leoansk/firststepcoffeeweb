@@ -1,0 +1,48 @@
+@CHARSET "EUC-KR";
+
+
+
+body {
+	 font-family: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+      sans-serif;
+   font-size: 12px;
+	color: #000000;
+}
+
+
+#container {
+	width: 940px;
+	margin: -115px auto;
+	padding: 110px 10px 50px 10px;
+	background-color: #c5c5c5; 
+/* 	background : url(55.gif); */
+	box-shadow: 0px 0px 15px #000;
+	background: url(../img/55.gif)
+}
+
+
+th, td {
+	text-align: center;
+	padding: 10px;
+}
+
+.feature {
+	width: 183px;
+	text-align: right;
+	font-size: 24px;
+	font-weight: normal;
+	color: #000000;
+}
+
+.iron, .nightster, .fortyeight {
+	background: rgba(255, 255, 255, 0.05);
+}
+
+
+tr:hover {
+	background: rgba(255, 255, 255, 0.05);
+}
+
+thead tr:hover {
+	background: none;
+}

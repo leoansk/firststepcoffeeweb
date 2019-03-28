@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org./DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dystopia">
+
+	<select id="selectPointCheck" parameterType="Integer" resultType="model.ReviewPointCheck">
+		select * 
+		from review_point_check 
+		where us_number=#{us_number}
+	</select>
+	<update id="updateuserPhoto" parameterType="model.Review" >
+		update users set
+		us_photoname=#{us_photoname} 
+		where us_number=#{usnumber}
+	</update>
+	<update id="updateProPhoto" parameterType="model.Review" >
+		update product set
+		pro_photo=#{pro_photo} 
+		where pro_number=#{pro_number}
+	</update>
+	<update id="updateReviewPhoto" parameterType="model.Review" >
+		update review 
+		set rev_photo1=#{rev_photo1},rev_photo2=#{rev_photo2},rev_photo3=#{rev_photo3} 
+		where rev_number=#{rev_number}
+	</update>
+	<insert id="insertLikes" parameterType="model.Likes">
+		insert into likes 
+		values(#{like_number},#{us_number}, #{pro_number},#{like_date},#{like_memo})
+	</insert>
+	<select id="selectLikeSeq" resultType="Integer">
+		select max(like_number) as like_number 
+		from likes
+	</select>
+	<select id="selectBestReview" parameterType="Integer" resultType="model.Review">
+		select r.rev_number, r.pro_number, r.us_number, r.rev_point, r.rev_content, r.rev_photo, r.rev_userproductscore, r.rev_date, r.rev_title, u.us_id
+		from REVIEW r, users u 
+		where u.us_number = r.US_NUMBER 
+		and r.pro_number =#{pro_number} 
+		order by r.REV_POINT desc
+	</select>
+	<select id="selectReviewPointCheckSeq" resultType="Integer">
+		select max(rpc_number) as rpc_number 
+		from review_point_check
+	</select>
+	<insert id="insertPointUser" parameterType="model.ReviewPointCheck">
+		insert into review_point_check 
+		values(#{rpc_number},#{us_number},#{rev_number})
+	</insert>
+	<select id="selectPointUser" parameterType="model.ReviewPointCheck" resultType="Integer">
+		select us_number 
+		from review_point_check 
+		where rev_number=#{rev_number} and us_number=#{us_number}
+	</select>
+	<update id="updateReviewPoint" parameterType="model.Review">
+		update review 
+		set rev_point=#{rev_point} 
+		where rev_number=#{rev_number}
+	</update>
+	<select id="selectReviewPoint" parameterType="Integer" resultType="Integer">
+		select rev_point 
+		from review 
+		where rev_number=#{rev_number}
+	</select>
+	<select id="selectKeyWord" parameterType="Integer" resultType="model.ReviewCheck">
+		select r.pro_number as pro_number, sum(rc.revck_costeff) as revck_costeff, sum(rc.revch_design) as revch_design, sum(rc.revch_performance) as revch_performance, sum(rc.revch_as) as
+		revch_as, sum(rc.revch_durability) as revch_durability
+		from review r, reviewcheck rc
+		where r.rev_number = rc.rev_number and r.pro_number=#{pro_number} 
+		group by r.pro_number
+	</select>
+	<update id="updateReviewCheck" parameterType="model.ReviewCheck">
+		update reviewcheck set revck_costeff=#{revck_costeff},
+		revch_design=#{revch_design}, revch_performance=#{revch_performance},
+		revch_as=#{revch_as}, revch_durability=#{revch_durability}
+		where rev_number=#{rev_number}
+	</update>
+	<update id="updateReview" parameterType="model.Review">
+		update review set
+		pro_number=#{pro_number}, us_number=#{us_number},
+		rev_point=#{rev_point}, rev_content=#{rev_content},
+		 rev_userproductscore=#{rev_userproductscore},
+		rev_date=#{rev_date}, rev_title=#{rev_title} where
+		rev_number=#{rev_number}
+	</update>
+	<select id="selectUserNum" parameterType="String" resultType="Integer">
+		select us_number 
+		from users 
+		where us_id=#{us_id}
+	</select>
+	<select id="selectReview" parameterType="Integer" resultType="model.Review">
+		select r.rev_number, r.rev_point, r.rev_content, r.rev_userproductscore,
+		r.rev_date, r.rev_title,
+		r.pro_number, u.us_id, u.us_number,
+		rc.revck_costeff, rc.revch_design, rc.revch_performance, rc.revch_as,
+		rc.revch_durability
+		from review r, users u, reviewcheck rc
+		where r.us_number = u.us_number and r.rev_number = rc.rev_number
+		and r.rev_number=#{rev_number}
+	</select>
+	<delete id="deleteReviewcheck" parameterType="Integer">
+		delete 
+		from reviewcheck 
+		where rev_number=#{reviewNum}
+	</delete>
+	<delete id="deleteReview" parameterType="Integer">
+		delete 
+		from review 
+		where rev_number=#{reviewNum}
+	</delete>
+	<select id="selectReviewlist" parameterType="model.Review" resultType="model.Review">
+		select r.pro_number, r.rev_number, r.rev_point, r.rev_content, r.rev_photo, r.rev_userproductscore,
+		r.rev_date, r.rev_title, r.rev_photo1, r.rev_photo2, r.rev_photo3,
+		u.us_id, u.us_photoname,
+		rc.revck_costeff, rc.revch_design, rc.revch_performance, rc.revch_as,
+		rc.revch_durability
+		from review r, users u, reviewcheck rc
+		where r.us_number = u.us_number and r.rev_number = rc.rev_number 
+		and r.pro_number=#{pro_number}
+		order by r.rev_number desc
+	</select>
+	<select id="confirmPw" parameterType="String" resultType="String">
+		select
+		us_password from users where us_treasure=#{treasure}
+	</select>
+
+	<select id="confirmId" parameterType="String" resultType="String">
+		select
+		us_password from users where us_treasure=#{treasure}
+	</select>
+
+	<insert id="insertReviewCheck" parameterType="model.ReviewCheck">
+		insert into
+		reviewcheck values(#{rev_number},#{revck_costeff},#{revch_design},
+		#{revch_performance},#{revch_as},#{revch_durability})
+	</insert>
+
+	<insert id="insertReview" parameterType="model.Review">
+		insert into review (rev_number, pro_number, us_number, rev_point, rev_content, 
+		rev_userproductscore, rev_date, rev_title) 
+		values (#{rev_number},#{pro_number},#{us_number},#{rev_point},
+		#{rev_content},#{rev_userproductscore},#{rev_date},#{rev_title})
+	</insert>
+
+	<select id="selectReviewSeq" resultType="Integer">
+		select max(rev_number)
+		as rev_number from review
+	</select>
+	<select id="selectProScore" parameterType="Integer" resultType="Float">
+		select avg(REV_USERPRODUCTSCORE) from review where
+		pro_number=#{proNum}
+	</select>
+	<select id="selectProContent" parameterType="Integer"
+		resultType="model.Product">
+		select * from product where pro_number=#{proNum}
+	</select>
+	<select id="selectProRead" parameterType="Integer" resultType="model.Product">
+		select pro_photo, pro_name, pro_modelname,pro_number,
+		avg(rev_userproductscore) as pro_avgscore from
+		(select p.pro_photo, p.pro_name, p.pro_modelname, p.pro_number,
+		r.rev_userproductscore
+		from product p, review r where p.pro_number =
+		r.pro_number(+)
+		and sc_number=#{sc_number})
+		group by pro_number,pro_photo, pro_name, pro_modelname
+	</select>
+	
+	<select id="selectBestProduct" resultType="model.Product">
+	select pro_photo, pro_name, pro_modelname,pro_number,
+		avg(rev_userproductscore) as pro_avgscore from
+		(select p.pro_photo, p.pro_name, p.pro_modelname, p.pro_number,
+		r.rev_userproductscore
+		from product p, review r where p.pro_number =r.pro_number(+) and r.rev_userproductscore >0 )
+		group by pro_number,pro_photo, pro_name, pro_modelname order by pro_avgscore desc
+	
+	</select>
+
+	<select id="selectProSeq" resultType="Integer">
+		select max(pro_number) as
+		pro_seq from product
+	</select>
+	<insert id="insertProduct" parameterType="model.Product">
+		insert into product (pro_number,pro_name,pro_price,pro_explain,sc_number,
+		pro_modelname,pro_date,pro_maker)values
+		(#{pro_number},#{pro_name},#{pro_price},#{pro_explain},#{sc_number},
+		#{pro_modelname},#{pro_date},#{pro_maker})
+	</insert>
+	
+	
+	<select id="selectUserProNum" parameterType="model.Likes" resultType="Integer" >
+	select pro_number from likes where us_number=#{us_number} and pro_number=#{pro_number}
+	</select>
+	 
+<!-- 	마스터 페이지 회원정보 select -->
+	<select id="selectUserReadAll" resultType="model.Users">
+		select * 
+		from users 
+		order by us_number
+	</select>
+<!-- 	마스터 페이지 회원 카테고리 별 등급 select -->
+	<select id="selectRankReadAll" resultType="model.Rank">
+   		SELECT * 
+   		FROM users u, rank r 
+   		WHERE u.US_NUMBER = r.US_NUMBER
+   </select>
+	<!--    마이페이지 내정보 select -->
+	<select id="selectUserRead" parameterType="string" resultType="model.Users">
+		select * 
+		from users 
+		where us_id= #{loginId} 
+		order by us_number
+	</select>
+<!--    마이페이지 등급 정보 select -->
+   <select id="selectRankRead" parameterType="string" resultType="model.Rank">
+   		SELECT * 
+   		FROM users u, rank r 
+   		WHERE u.US_NUMBER = r.US_NUMBER 
+   		AND u.US_ID = #{loginId}
+   </select>
+<!--    마이페이지 내 정보 수정 update -->
+	<update id="updateUser" parameterType="model.Users">
+		update users 
+		set us_password=#{us_password}, us_age=#{us_age}, us_gender=#{us_gender}, us_address=#{us_address}, us_email=#{us_email}, us_phone=#{us_phone}, us_birthday=#{us_birthday}, us_name=#{us_name} 
+		where us_id = #{us_id}
+   </update>
+</mapper>	

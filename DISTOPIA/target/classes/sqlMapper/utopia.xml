@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org./DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="utopia">
+	<!--유토피아 글 삽입 -->
+	<insert id="insertUtopia" parameterType="model.Utopia">
+		insert into board
+		values(
+		#{boa_number},#{boa_title},#{boa_content},#{us_number},#{boa_date})
+	</insert>
+	<!--유토피아 높은 글번호 -->
+	<select id="selectUtopiaNumber" resultType="Integer">
+		select
+		max(boa_number) from board
+	</select>
+	<!-- 유토피아 글목록 -->
+	<select id="selectUtopiaList" resultType="model.Utopia">
+		select b.boa_number,
+		b.boa_title, b.boa_date, u.us_id from board b,users u
+		where b.us_number
+		= u.us_number order by b.boa_number desc
+	</select>
+	<!-- 유토피아 글내용 -->
+	<select id="selectUtopiaContent" resultType="model.Utopia"
+		parameterType="Integer">
+		select b.boa_number, b.boa_title, b.boa_content,
+		b.boa_date, u.us_id from
+		board b,users u
+		where b.us_number = u.us_number
+		and b.boa_number = #{boa_number}
+	</select>
+	<!-- 유토피아 댓글 삽입 -->
+	<insert id="insertUtopiaReply" parameterType="model.UtopiaReply">
+		insert into
+		board_reply values
+		(#{rep_number},#{boa_number},#{rep_groupnum},#{rep_parentsnum},#{rep_order},#{us_number},#{rep_date},#{rep_content})
+	</insert>
+	<!-- 높은 댓글 번호 -->
+	<select id="selectUtopiaRepNum" resultType="Integer">
+		select
+		max(rep_number) from board_reply
+	</select>
+	<!--높은 그룹번호 -->
+	<select id="selectUtopiaRepGroupnum" resultType="Integer">
+		select
+		max(rep_groupnum) from board_reply
+	</select>
+	<!--높은 출력순서 -->
+	<select id="selectUtopiaRepOrder" resultType="Integer">
+		select
+		max(rep_order) from board_reply
+	</select>
+	<!-- 댓글 select -->
+	<select id="selectUtopiaReply" resultType="model.UtopiaReply"
+		parameterType="Integer">
+		select re.rep_content, re.rep_date,u.us_id
+		,re.rep_parentsnum,re.rep_groupnum,re.rep_order
+		,re.boa_number,re.rep_number
+		from board_reply re , users u
+		where
+		re.us_number = u.us_number and re.boa_number = #{boa_number}
+		order by
+		re.rep_order desc
+	</select>
+
+	<!-- 유토피아 글 내용 수정 -->
+	<update id="updateContent" parameterType="model.Utopia">
+		update
+		board set
+		boa_number =
+		#{boa_number},boa_title=#{boa_title},boa_content=#{boa_content},us_number=#{us_number},
+		boa_date=#{boa_date}
+		where boa_number = #{boa_number}
+	</update>
+
+	<delete id="deleteBoardContent" parameterType="Integer">
+		delete from board
+		where boa_number=#{boa_number}
+	</delete>
+	<delete id="deleteRBoardContent" parameterType="Integer">
+		delete from
+		board_Reply where boa_number=#{boa_number}
+	</delete>
+
+	<!--글목록 페이지처리 -->
+	<select id="selectPages" resultType="Integer">
+		select count(*) as num from
+		board
+	</select>
+	<select id="selectPrevPageCount" parameterType="Integer"
+		resultType="Integer">
+		select count(*) as num
+		from board
+		where boa_number >
+		#{boa_number}
+	</select>
+	<select id="selectNextPageCount" parameterType="Integer"
+		resultType="Integer">
+		select count(*) as num from
+		(select boa_number, rownum rn
+		from
+		(select * from board order by boa_number desc)
+		)
+		where rn >
+		((#{page})*5)
+	</select>
+	<select id="selectPrevPage" parameterType="Integer" resultType="model.Utopia">
+		select boa_number, boa_title, boa_date, us_id from (select boa_number,
+		boa_title, boa_date, us_id, rownum from
+		(select
+		b.boa_number,b.boa_title, b.boa_date, u.us_id from board b,users u
+		where b.boa_number > #{page} and
+		b.US_NUMBER = u.US_NUMBER order by
+		b.boa_number))
+		where rownum <![CDATA[<]]>=
+		5 order by boa_number desc
+	</select>
+	<select id="selectNextPage" parameterType="Integer" resultType="model.Utopia">
+		select b.boa_number,b.boa_title, b.boa_date, u.us_id from board b,users u
+		where b.boa_number <![CDATA[<]]>
+		#{boa_number} and b.US_NUMBER = u.US_NUMBER
+		order by b.boa_number desc
+	</select>
+
+	<select id="selectPageNum" parameterType="Integer" resultType="model.Utopia">
+		select boa_number, boa_title, boa_date, us_id from
+		(select boa_number,
+		boa_title, boa_date, us_id, rownum as rn from (select
+		b.boa_number,b.boa_title, b.boa_date, u.us_id
+		from board b,users u
+		where b.US_NUMBER = u.US_NUMBER order by b.boa_number
+		desc))
+		where (rn >
+		(#{page}-1)*5) and
+		(rn <![CDATA[<]]>=
+		(#{page}*5))
+	</select>
+	
+	<!-- 댓글의 댓글 출력번호 update -->
+	<update id="updateOrderNo" parameterType="model.UtopiaReply">
+		update board_reply set rep_order = rep_order + 1
+		where rep_groupnum = #{rep_groupnum}
+		and rep_order >= #{rep_order}
+	</update>
+	<!-- id num찾기 -->
+	<select id="selectIDnum" parameterType="String" resultType="Integer">
+		select us_number from users where us_id = #{id}
+	</select>
+	<!-- 비밀번호 맞나확인 -->
+	<select id="selectPASSWORD" parameterType="model.Utopia"
+		resultType="String">
+		select us_password from users where us_id = #{id} and us_password =
+		#{us_password}
+	</select>
+	<!-- 검색하기 -->
+	<select id="selectSearchUtipoa" resultType="model.Utopia"
+		parameterType="String">
+		select b.boa_number,b.boa_title, b.boa_date, u.us_id from board b,users u
+		where b.boa_title like '%'||#{search}||'%' and b.us_number
+		=
+		u.us_number order by b.boa_number desc
+	</select>
+	<!-- 그거뭐냐 그거...댓글 삭제 -->
+	<delete id="deleteReply"  parameterType="Integer">
+	delete from board_reply
+	where rep_number=#{rep_number}
+	</delete>
+	<!-- 댓글수정하기 -->
+	<select id="selectUpdateReply"  parameterType="Integer" resultType="model.UtopiaReply">
+	select boa_number,rep_number,rep_content from board_reply where rep_number = #{rep_number}
+	</select>
+	<update id="updateRelpy"  parameterType="model.UtopiaReply">
+	update board_reply set rep_content=#{rep_content},rep_date=#{rep_date}
+	where rep_number =#{rep_number}
+	</update>
+	
+	
+	<!-- 상품검색 -->
+	<select id="searchPro"  resultType="model.Product" parameterType="String">
+		select pro_photo, pro_name, pro_modelname,pro_number,avg(rev_userproductscore) as pro_avgscore from
+		(select p.pro_photo, p.pro_name, p.pro_modelname, p.pro_number, r.rev_userproductscore from
+		product p, review r where p.pro_number = r.pro_number(+) and p.pro_name like '%'||#{search}||'%') 
+		group by pro_number,pro_photo, pro_name, pro_modelname
+	
+	
+	
+	</select>
+	<!-- <select id="selectPagesRely" resultType="Integer"> -->
+	<!-- select count(*) as num from -->
+	<!-- board_reply -->
+	<!-- </select> -->
+	<!-- <select id="selectPrevPageCountRely" parameterType="Integer" -->
+	<!-- resultType="Integer"> -->
+	<!-- select count(*) as num -->
+	<!-- from board_reply -->
+	<!-- where boa_number > -->
+	<!-- #{boa_number} -->
+	<!-- </select> -->
+	<!-- <select id="selectNextPageCountRely" parameterType="model.UtopiaReply" 
+		resultType="model.UtopiaReply"> -->
+	<!-- select count(*) as num from -->
+	<!-- (select rep_number, rownum rn from -->
+	<!-- (select * from board_reply where boa_number = #{boa_number} order by 
+		rep_number desc) -->
+	<!-- ) -->
+	<!-- where rn > ((#{page})*5) -->
+	<!-- </select> -->
+	<!-- <select id="selectPrevPageRely" parameterType="model.UtopiaReply" resultType="model.UtopiaReply"> -->
+
+	<!-- select rep_content, rep_date,us_id -->
+	<!-- ,rep_parentsnum,rep_groupnum,rep_order -->
+	<!-- ,boa_number,rep_number from -->
+	<!-- (select rep_content, rep_date,us_id -->
+	<!-- ,rep_parentsnum,rep_groupnum,rep_order -->
+	<!-- ,boa_number,rep_number, rownum -->
+	<!-- rn from -->
+	<!-- (select re.rep_content, re.rep_date,u.us_id -->
+	<!-- ,re.rep_parentsnum,re.rep_groupnum,re.rep_order -->
+	<!-- ,re.boa_number,re.rep_number from board_reply re , users u -->
+	<!-- where -->
+	<!-- re.rep_number > #{page} and -->
+	<!-- re.US_NUMBER = u.US_NUMBER and re.boa_number = #{boa_number} order 
+		by -->
+	<!-- re.rep_order)) -->
+	<!-- where rn <![CDATA[<]]>= -->
+	<!-- 5 order by rep_number desc -->
+	<!-- </select> -->
+	<!-- <select id="selectNextPageRely" parameterType="model.UtopiaReply" resultType="model.UtopiaReply"> -->
+	<!-- select * from board_reply -->
+	<!-- where rep_number <![CDATA[<]]> -->
+	<!-- #{rep_number} and boa_number = #{boa_number} -->
+	<!-- order by rep_number desc -->
+	<!-- </select> -->
+
+	<!-- <select id="selectPageNumRely" parameterType="model.UtopiaReply" resultType="model.UtopiaReply"> -->
+	<!-- select rep_content, rep_date,us_id,rep_parentsnum,rep_groupnum,rep_order,boa_number,rep_number 
+		from -->
+	<!-- (select rep_content, rep_date,us_id,rep_parentsnum,rep_groupnum,rep_order,boa_number,rep_number, 
+		rownum as rn from -->
+	<!-- (select re.rep_content, re.rep_date,u.us_id ,re.rep_parentsnum,re.rep_groupnum,re.rep_order,re.boa_number,re.rep_number -->
+	<!-- from board_reply re , users u where re.US_NUMBER = u.US_NUMBER and 
+		re.boa_number = #{boa_number}order by re.rep_number desc)) -->
+	<!-- where (rn > (#{page}-1)*5) and -->
+	<!-- (rn <![CDATA[<]]>= -->
+	<!-- (#{page}*5)) -->
+
+	<!-- </select> -->
+	
+	<select id="">
+	
+	</select>
+		<update id="updateImage" parameterType="hashmap">
+		update users set us_photo=#{usPhoto}
+		where us_id=#{loginId}
+	</update>
+	<insert id="insertProduct" parameterType="hashmap">
+		insert into product values
+		(#{pro_number},#{pro_name},#{pro_price},#{pro_explain},#{sc_number},
+		#{pro_modelname},#{pro_date},#{pro_maker},#{pro_photo})
+	</insert>
+</mapper>	
+
+
+
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org./DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dystopia">
+
+
+	<!-- 가장큰 글번호 select -->
+	<select id="selectMaxSeqno" resultType="Integer">
+		select max(us_number) as
+		maxUsnumber from users
+	</select>
+
+	<!-- 회원가입 정보 insert -->
+	<insert id="insertUserInfo" parameterType="hashmap">
+		insert into
+		users(us_number,us_id, us_password, us_gender, us_address, us_email,
+		us_phone,
+		us_birthday, us_photo, us_name, us_treasure)
+		values(#{usnumber},#{usid},#{uspassword},#{usgender},#{usaddress},#{usemail},#{usphone}, 
+		#{usbirthday}, #{usphoto}, #{usname},#{ustreasure})
+	</insert>
+
+	<!-- 가입시 포인트 insert -->
+	<insert id="insertPoint" parameterType="model.Rank">
+		insert into
+		rank(rank_number,us_number,
+		rank_kitchen,rank_life,rank_tv,rank_digitalcamera,
+		rank_desktop,rank_notebook,rank_2in1,rank_peripheral_com,
+		rank_smartphone,rank_tablet,rank_smartwatch,rank_peripheral_smart,
+		rank_furniture,rank_clothing,rank_sport,rank_stationery)
+		values(#{rank_number},#{us_number},
+		#{rank_kitchen},#{rank_life},#{rank_tv},#{rank_digitalcamera},
+		#{rank_desktop},#{rank_notebook},#{rank_2in1},#{rank_peripheral_com},
+		#{rank_smartphone},#{rank_tablet},#{rank_smartwatch},#{rank_peripheral_smart},
+		#{rank_furniture},#{rank_clothing},#{rank_sport},#{rank_stationery})
+	</insert>
+
+	<!-- rank 최대번호 -->
+	<select id="selectRankMaxSeqno" resultType="Integer">
+		select max(rank_number) as maxRankNumber from rank
+	</select>
+
+	<!-- PW select -->
+	<select id="selectPw" parameterType="String" resultType="String">
+		select
+		us_password from users where us_id = #{id}
+	</select>
+
+	<!-- ID select(아이디나 비번 잃어버렸을때) -->
+	<select id="selectIdTre" parameterType="String" resultType="String">
+		select us_id as usid from users where us_treasure = #{treasure}
+	</select>
+
+	<!-- PW select(아이디나 비번 잃어버렸을때) -->
+	<select id="selectPwTre" parameterType="String" resultType="String">
+		select us_password as uspassword from users where us_treasure =
+		#{treasure}
+	</select>
+
+	<!-- ID 중복체크용 -->
+	<select id="dupIdCnt" parameterType="String" resultType="Integer">
+		select
+		count(*) as cnt from users where us_id = #{id}
+	</select>
+</mapper>	
+
+
+
+

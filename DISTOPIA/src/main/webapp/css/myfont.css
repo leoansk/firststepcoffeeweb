@@ -1,0 +1,17 @@
+@CHARSET "EUC-KR";
+
+#font {
+	font: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+		sans-serif;
+	font-size: 18px;
+	color: #ffffff;
+}
+
+#font2 {
+	font: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+		sans-serif;
+	font-size: 18px;
+	color: #000000;
+	letter-spacing: 2px;
+	line-height:150%;
+}

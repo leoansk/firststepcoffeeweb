@@ -1,0 +1,121 @@
+body {
+	background-color: #f5f7fa;
+	font-family: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+      sans-serif;
+   font-size: 16px;
+
+   	font-weight: normal;
+
+}
+
+
+.dystable {
+	
+	font: 93% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+	sans-serif;
+	border-collapse: collapse;
+	color: #333;
+	background: #F3F5F7;
+	shadow: 0px 0px 15px #000;
+	
+}
+
+.dystable a {
+	color: #3A4856;
+	text-decoration: none;
+	border-bottom: 1px solid #C6C8CB;
+}
+
+.dystable a:visited {
+}
+	color: #777;
+
+.dystable a:hover {
+	color: #000;
+}
+
+.dystable caption {
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 10px;
+	font: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+		sans-serif;
+}
+
+.dystable thead th {
+	background: #3A4856;
+	padding: 15px 10px;
+	color: #fff;
+	text-align: center;
+	font-weight: normal;
+}
+
+.dystable tbody, table thead {
+	border: 1px solid #EAECEE;
+	border-right: 1px solid #EAECEE;
+}
+
+.dystable tbody {
+	border-bottom: 1px solid #EAECEE;
+}
+
+.dystable tbody td, table tbody th {
+	padding: 10px;
+	background: url("td_back.gif") repeat-x;
+}
+/* 여기까진 괜찮음 */
+.dystable tbody tr {
+	background: #F3F5F7;
+}
+
+.dystable tbody tr.odd {
+	background: #F0F2F4;
+}
+
+
+
+/* .dystable tfoot td, table tfoot th, table tfoot tr { */
+/* 	text-align: center; */
+/* 	font: 120% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", */
+/* 		sans-serif; */
+/* 	text-transform: uppercase; */
+/* 	background: #fff; */
+/* 	padding: 10px; */
+/* } */
+.myButton {
+  -webkit-border-radius: 16;
+  -moz-border-radius: 16;
+  border-radius: 16px;
+  font-family: Courier New;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 6px;
+  background: #7799a3;
+  text-decoration: none;
+  border:0;
+  outline:0;
+}
+
+.myButton:hover {
+  text-decoration: none;
+}
+
+
+
+/* 이거 검색 박스 */
+.textbox {
+	background: white;
+	border: 1px solid #DDD;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #DDD inset;
+	color: #666;
+	outline: none;
+/* 	height: 25px; */
+/* 	width: 275px; */
+}
+.text-shadow{
+text-shadow:-7px 0px 10px rgba(194, 194, 194, 0.53);
+font-size:21px;
+color: #000000;
+font-family:ABeeZee;
+}

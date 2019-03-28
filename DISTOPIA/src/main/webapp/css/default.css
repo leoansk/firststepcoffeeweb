@@ -1,0 +1,299 @@
+table.main {
+   background-color: #a3a3a3;
+   background-image: url("../img/main.gif");
+   padding: 0;
+   border-spacing: 0;
+   border-collapse: collapse;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: 100%;
+   font-family: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+      sans-serif;
+   font-size: 12px;
+}
+/* font-family: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+      sans-serif; */
+table.maina {
+   padding: 0;
+   border-spacing: 0px;
+   border-collapse: collapse;
+}
+
+table.maint {
+   padding: 0;
+   border-spacing: 0px;
+   border-collapse: collapse;
+   border: 1px gray solid;
+}
+
+.menu {
+   position: relative;
+   height: 44px;
+   background: #2b2f3a;
+   width: auto;
+}
+
+.menu ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   line-height: 1;
+}
+
+.menu>ul {
+   position: relative;
+   display: block;
+   background: #2b2f3a;
+   width: 1000px;
+   z-index: 500;
+}
+
+.menu:after, .menu>ul:after {
+   content: ".";
+   display: block;
+   clear: both;
+   visibility: hidden;
+   line-height: 0;
+   height: 0;
+}
+
+.menu.align-right>ul>li {
+   float: right;
+}
+
+.menu.align-center ul {
+   text-align: center;
+}
+
+.menu.align-center ul ul {
+   text-align: left;
+}
+
+.menu>ul>li {
+   display: inline-block;
+   position: relative;
+   margin: 0;
+   padding: 0;
+}
+
+.menu>ul>#menu-button {
+   display: none;
+}
+
+.menu ul li a {
+   display: block;
+   font-family: Helvetica, sans-serif;
+   text-decoration: none;
+}
+
+.menu>ul>li>a {
+   font-size: 14px;
+   font-weight: bold;
+   padding: 15px 20px;
+   color: #fff;
+   text-transform: uppercase;
+   -webkit-transition: color 0.25s ease-out;
+   -moz-transition: color 0.25s ease-out;
+   -ms-transition: color 0.25s ease-out;
+   -o-transition: color 0.25s ease-out;
+   transition: color 0.25s ease-out;
+}
+
+.menu>ul>li.sub>a {
+   padding-right: 32px;
+}
+
+.menu>ul>li:hover>a {
+   color: #ffffff;
+}
+
+.menu li.sub::after {
+   display: block;
+   content: "";
+   position: absolute;
+   width: 0;
+   height: 0;
+}
+
+.menu>ul>li.sub::after {
+   right: 10px;
+   top: 20px;
+   border: 5px solid transparent;
+   border-top-color: #7a8189;
+}
+
+.menu>ul>li:hover::after {
+   border-top-color: #ffffff;
+}
+
+.menu ul ul {
+   position: absolute;
+   left: -9999px;
+   top: 70px;
+   opacity: 0;
+   -webkit-transition: opacity .3s ease, top .25s ease;
+   -moz-transition: opacity .3s ease, top .25s ease;
+   -ms-transition: opacity .3s ease, top .25s ease;
+   -o-transition: opacity .3s ease, top .25s ease;
+   transition: opacity .3s ease, top .25s ease;
+   z-index: 1000;
+}
+
+.menu ul ul ul {
+   top: 37px;
+   padding-left: 5px;
+}
+
+.menu ul ul li {
+   position: relative;
+}
+
+.menu>ul>li:hover>ul {
+   left: auto;
+   top: 44px;
+   opacity: 1;
+}
+
+.menu.align-right>ul>li:hover>ul {
+   left: auto;
+   right: 0;
+   opacity: 1;
+}
+
+.menu ul ul li:hover>ul {
+   left: 170px;
+   top: 0;
+   opacity: 1;
+}
+
+.menu.align-right ul ul li:hover>ul {
+   left: auto;
+   right: 170px;
+   top: 0;
+   opacity: 1;
+   padding-right: 5px;
+}
+
+.menu ul ul li a {
+   width: 130px;
+   border-bottom: 1px solid #eeeeee;
+   padding: 10px 20px;
+   font-size: 12px;
+   color: #000000;
+   background: #ffffff;
+   -webkit-transition: all .35s ease;
+   -moz-transition: all .35s ease;
+   -ms-transition: all .35s ease;
+   -o-transition: all .35s ease;
+   transition: all .35s ease;
+}
+
+.menu.align-right ul ul li a {
+   text-align: right;
+}
+
+.menu ul ul li:hover>a {
+   background: #f2f2f2;
+   color: #8c9195;
+}
+
+.menu ul ul li:last-child>a, .menu ul ul li.last>a {
+   border-bottom: 0;
+}
+
+.menu>ul>li>ul::after {
+   content: '';
+   border: 6px solid transparent;
+   width: 0;
+   height: 0;
+   border-bottom-color: #ffffff;
+   position: absolute;
+   top: -12px;
+   left: 30px;
+}
+
+.menu.align-right>ul>li>ul::after {
+   left: auto;
+   right: 30px;
+}
+
+.menu ul ul li.sub::after {
+   border: 4px solid transparent;
+   border-left-color: #9ea2a5;
+   right: 10px;
+   top: 12px;
+   -moz-transition: all .2s ease;
+   -ms-transition: all .2s ease;
+   -o-transition: all .2s ease;
+   transition: all .2s ease;
+   -webkit-transition: -webkit-transform 0.2s ease, right 0.2s ease;
+}
+
+.menu.align-right ul ul li.sub::after {
+   border-left-color: transparent;
+   border-right-color: #9ea2a5;
+   right: auto;
+   left: 10px;
+}
+
+.menu ul ul li.sub:hover::after {
+   border-left-color: #ffffff;
+   right: -5px;
+   -webkit-transform: rotateY(180deg);
+   -ms-transform: rotateY(180deg);
+   -moz-transform: rotateY(180deg);
+   -o-transform: rotateY(180deg);
+   transform: rotateY(180deg);
+}
+
+.menu.align-right ul ul li.sub:hover::after {
+   border-right-color: #ffffff;
+   border-left-color: transparent;
+   left: -5px;
+   -webkit-transform: rotateY(180deg);
+   -ms-transform: rotateY(180deg);
+   -moz-transform: rotateY(180deg);
+   -o-transform: rotateY(180deg);
+   transform: rotateY(180deg);
+}
+
+#search input {
+   opacity: 0.5;
+   background: none repeat scroll 0 0 #f3f3f3;
+   border: 0;
+   color: #000080;
+   float: left;
+   height: 20px;
+   margin: 0;
+   padding: 7px;
+   transition: background 0.3s ease-in-out 0s #a6a6a6;
+   width: 400px;
+   outline: 0;
+   font: 93% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+	sans-serif #000000;
+}
+
+#search button {
+   opacity: 0.5;
+   background: url("../img/ss.png") no-repeat scroll center center #ffffff;
+   cursor: pointer;
+   height: 34px;
+   text-indent: -99999em;
+   transition: background 0.3s ease-in-out 0s #ffffff;
+   width: 45px;
+   border: 2px solid #ffffff;
+   outline: 0;
+         box-shadow: 0px 0px 8px #d9d9d9; 
+       -moz-box-shadow: 0px 0px 8px #d9d9d9; 
+       -webkit-box-shadow: 0px 0px 8px #d9d9d9;
+       
+}
+
+#search button:hover {
+   background-color: #ffffff;
+}
+
+body {
+   background-color: #ffffff;
+}
+
