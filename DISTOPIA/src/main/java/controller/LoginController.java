@@ -25,7 +25,6 @@ public class LoginController {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
 
 	@Autowired
 	ProductLogic pl;
@@ -45,6 +44,7 @@ public class LoginController {
 		ModelAndView modelAndView = null;
 
 		// DB에서 select(일치하는 ID,PW)
+		System.out.println("1");
 		String strPW = sqlSession.selectOne("dystopia.selectPw", id);
 		System.out.println(strPW);
 
@@ -222,7 +222,6 @@ public class LoginController {
 				break;
 			}
 		}
-
 		ModelAndView modelAndView = new ModelAndView("template");// 회원가입 폼으로 전환
 		modelAndView = new ModelAndView("template");
 		modelAndView.addObject("Users_LIST", userslist); // 회원 가입한 유저
@@ -231,5 +230,4 @@ public class LoginController {
 		modelAndView.addObject("BODY", "../jsp/master_page.jsp");
 		return modelAndView;
 	}
-
 }

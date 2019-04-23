@@ -42,8 +42,9 @@
 
 	<!-- PW select -->
 	<select id="selectPw" parameterType="String" resultType="String">
-		select
-		us_password from users where us_id = #{id}
+		select us_password 
+		from users 
+		where us_id = #{id}
 	</select>
 
 	<!-- ID select(아이디나 비번 잃어버렸을때) -->
