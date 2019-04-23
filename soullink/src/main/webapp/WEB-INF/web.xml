@@ -23,6 +23,13 @@
 			<!-- <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> -->
 			<param-value>classpath:spring/servlet-context.xml</param-value>
 		</init-param>
+		
+		<!-- 404에러와 같이 was 내부에서 발생하는 애러 처리할 때 사용 -->
+		<init-param>
+			<param-name>throwExceptionIfNoHandlerFound</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		

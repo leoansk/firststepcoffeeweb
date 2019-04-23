@@ -59,8 +59,10 @@ $(document).ready(function(){
 		console.log(formObj);
 		$(".btn-warning").on("click",function(){
 			self.location = "/boards/list?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}";});
-		$(".btn-primary").on("click",function(){formObj.submit();});
-				});
+		$(".btn-primary").on("click",function(){
+			formObj.submit();
+		});
+});
 </script>
 
 			</div>

@@ -14,11 +14,28 @@
 	</figure>
 </div>
 
-<input type="button" value="클릭" onclick="showbrowserInfo()">
-<input id="sendInfo" type="button" value="controller로 보내기" onclick="sendInfo()"/>
+<input type="button" class="btn" id="popupBtn" value="POPUP">
+
+
+<form action="/otzang/exUploadPost" method="post" enctype="multiPART/form-data">
+	<div>
+		<input type="file" name="files">
+	</div>
+	<div>
+		<input type="file" name="files">
+	</div>
+	<div>
+		<input type="file" name="files">
+	</div>
+	<div>
+		<input type="submit">
+	</div>
+</form>
+
+
 
 <script>
-
+	
 	function showbrowserInfo(){
 		var info;
 		info += "navigator.appName";

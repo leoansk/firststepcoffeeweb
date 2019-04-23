@@ -122,11 +122,11 @@
 		</if>
 	</sql>
  
-<update id="updateReplyCnt">
-	update olp_board
-	set replycnt = replycnt + #{amount}
-	where bno = #{bno}
-</update>
+	<update id="updateReplyCnt">
+		update olp_board
+		set replycnt = replycnt + #{amount}
+		where bno = #{bno}
+	</update>
 
 <!--
 <update id="updateViewCnt">

@@ -4,8 +4,17 @@
 <mapper namespace= "com.ansk.web.mappers.memberMapper">
 	<!-- 회원가입 -->
 	<insert id="create">
-		insert into ()
-		values(#{id},#{password_re},#{email})
+		<![CDATA[
+		insert into olp_member(userid,userpw,username,email)
+		values(#{id},#{password_re},#{id},#{email})
+		]]>
 	</insert>
-
+	
+	<select id="selectUserId" parameterType="HashMap" resultType="HashMap">
+		<![CDATA[
+		select count(userid) as result
+		from olp_member
+		where userid = #{id}
+		]]>
+	</select>
 </mapper>

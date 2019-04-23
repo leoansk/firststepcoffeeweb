@@ -1,5 +1,7 @@
 package com.ansk.web.persistence;
 
+import java.util.Map;
+
 import com.ansk.web.domain.JoinMemberInfoVO;
 
 public interface MembershipManagementDAO {
@@ -12,5 +14,5 @@ public interface MembershipManagementDAO {
 //	public void delete() throws Exception;
 //	//회원정보수정
 //	public void update() throws Exception;
-	
+	public int selectUserId(Map<String,Object> map) throws Exception;
 }

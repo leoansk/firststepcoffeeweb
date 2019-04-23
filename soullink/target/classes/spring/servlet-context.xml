@@ -25,6 +25,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.ansk.web.controller" />
+	<context:component-scan base-package="com.ansk.web.exception"/>
 	
 	<!--interceptor관련 설정 -->
 	<!-- 
@@ -38,4 +39,22 @@
 	
 	</interceptors>
 	 -->
+	 
+	 
+	 
+	 <!-- 파일 업로드 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 업로드 하는 파일의 이름이 한글일 경우 깨지는 문제를 처리 -->
+		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
+		<!-- 한번의 Request로 전달될 수 있는 최대의 크기 -->
+		<beans:property name="maxUploadSize" value="104857560"></beans:property>
+		<!-- 하나의 파일 최대 크기 -->
+		<beans:property name="maxUploadSizePerFile" value="2097152"></beans:property>
+		<!-- 경로 -->
+		<beans:property name="uploadTempDir" value="file:/C:/ansk/tmp"></beans:property>
+		<!-- 메모리상에서 유지하는 최대의 크기 -->
+		<beans:property name="maxInMemorySize" value="10485756"></beans:property>
+	
+	</beans:bean>
+	 
 </beans:beans>

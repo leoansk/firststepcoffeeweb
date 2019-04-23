@@ -18,6 +18,13 @@ public class HomeController {
 		
 		return "mainPage";
 	}
+	
+	@RequestMapping(value = "popup", method = RequestMethod.GET)
+	public String popup() {
+		logger.info("popup!");
+		return "popup";
+	}
+	
 	//현재 설정된 mainPage
 	@RequestMapping(value = "mainPage", method = RequestMethod.GET)
 	public String mainPage() {

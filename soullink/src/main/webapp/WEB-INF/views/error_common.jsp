@@ -6,14 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>ExceptionPage</title>
 </head>
 <body>
+
    <h4>${exception.getMessage() }</h4>
    
    <ul>
    <c:forEach items="${exception.getStackTrace() }" var="stack">
      <li>${stack.toString()}</li>
+     <li><c:out value="${stack}"></c:out></li>
    </c:forEach>
    </ul>
 </body>

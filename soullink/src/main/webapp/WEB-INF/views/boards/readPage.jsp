@@ -165,7 +165,8 @@
 {{/each}}
 </script>
 
-<!-- 위의 'prettifyDate'에 대한 JavaScript 처리는 아래와 같습니다 
+<!-- 
+	위의 'prettifyDate'에 대한 JavaScript 처리는 아래와 같습니다 
 	handlebars는 helper라는 기능을 이용해서 데이터의 상세한 처리에 필요한 기능들을 처리합니다.
 	만일 원하는 기능이 없는 경우에는 아래와 같이 registerHelper()를 이용해서 사용자가 새로운 기능을 추가할 수 있습니다.
 -->
