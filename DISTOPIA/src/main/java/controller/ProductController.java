@@ -79,13 +79,6 @@ public class ProductController {
 		
 	}
 	
-
-
-	
-	
-	
-	
-	
 	//상품등록===========================================================
 	@RequestMapping(value="/product/proinsertview.do", method=RequestMethod.GET)
 	public ModelAndView proinsertview(){

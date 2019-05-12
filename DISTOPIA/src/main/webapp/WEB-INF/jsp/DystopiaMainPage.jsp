@@ -16,8 +16,7 @@
 </center>
 <br/><br/>
 <center>
-<form action="../review/insert.do" method="post" 
-id="form" name="form" enctype="multipart/form-data">
+<form action="../review/insert.do" method="post" id="form" name="form" enctype="multipart/form-data">
 <input type="hidden" value="${Product_LIST.pro_number[0]}" name="pro_number">
 <table  width="80%"  class="dystable"><!-- 외각 시작 -->
 <tr><td rowspan="3" width="28%" align="center">
@@ -29,9 +28,7 @@ ${Product_LIST.pro_name[0]}
       
       <table  rules="none" width="100%" ><!-- 1번 테이블 시작 -->
       <tr><td>
-       <input type="text"  class="textbox"  value="Title" id="Title" name="title" size="85" 
-       onfocus="if(this.value=='Title'){this.value=''}" 
-       onblur="if(this.value =='') this.value='Title';">
+       <input type="text"  class="textbox"  value="Title" id="Title" name="title" size="85" onfocus="if(this.value=='Title'){this.value=''}" onblur="if(this.value =='') this.value='Title';">
       </td></tr></table><!-- 1번 테이블 끝 -->
    </td></tr>
    

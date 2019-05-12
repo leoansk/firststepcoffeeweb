@@ -3,7 +3,7 @@
 	
 	<!-- 본문 들어갈 곳 -->
 	<div class="container">
-		<h1 class="menu_title">Have a look at our choices of delicious drinks and brunch!</h1>
+		<h1 class="menu_title" style="color: white;">Have a look at our choices of delicious drinks and brunch!</h1>
 		<!-- 핀터레스트 스타일 형식 -->
 		<div id="suitcolumns">
 			
@@ -12,28 +12,25 @@
 				<img src="/resources/suit/img/Expresso.jpg" onclick="doImgPop('/resources/suit/img/Expresso.jpg')">
 				<figcaption>
 					<p>Expresso</p>
-					<p>에스프레소는 쓰다 뭐 이런내용 적어줘 설명을 막 하는거야</p>
-					<!-- 댓글 시스템으로 만들자 	 -->
-					
-					<!-- 작은 원형 스타일의 썸네일 처리 -->
-					<div class="suit thumbnail circle" style="background-image: url('/resources/suit/img/CafeLatte.jpg')">
-						
-					</div>
-					이게 제일 맛있음
-					
-					<div class="suit thumbnail circle" style="background-image: url('/resources/suit/img/Americano.jpg')">
-						
-					</div>	
-					ㄴㄴ 이거 맛없어	
-					
+					<p>내용...</p>
+					<!-- 
+						작은 원형 스타일의 썸네일 처리...
+						<div class="suit thumbnail circle" style="background-image: url('/resources/suit/img/Americano.jpg')">
+							<br/>
+							<p>흐음</p>
+						</div> 
+					-->	
 				</figcaption>
 			</figure>
 
 			<figure>
-				<img src="/resources/suit/img/Macchiato.jpg">
+				<div class="item">
+					<img src="/resources/suit/img/Macchiato.jpg" width="100px" height="100px">
+					<div class="item-overlay top"></div>
+				</div>
 				<figcaption>
 					<p>Macchiato</p>
-					<p>달아</p>
+					<p>story</p>
 				</figcaption>
 			</figure>
 
@@ -41,7 +38,7 @@
 				<img src="/resources/suit/img/Shakerato.jpg">
 				<figcaption>
 					<p>Shakerato</p>
-					<p>써 무지써</p>
+					<p>story</p>
 				</figcaption>
 			</figure>
 
@@ -49,6 +46,7 @@
 				<img src="/resources/suit/img/Americano.jpg">
 				<figcaption>
 					<p>Americano</p>
+					<p></p>
 				</figcaption>
 			</figure>
 			

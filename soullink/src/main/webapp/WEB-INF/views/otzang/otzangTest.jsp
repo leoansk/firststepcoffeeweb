@@ -5,7 +5,6 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-
 <div class="container">
 	<h1>Otzang</h1>
 	
@@ -13,9 +12,6 @@
 		<img src="/resources/suit/img/otZangImg_1.jpg">
 	</figure>
 </div>
-
-<input type="button" class="btn" id="popupBtn" value="POPUP">
-
 
 <form action="/otzang/exUploadPost" method="post" enctype="multiPART/form-data">
 	<div>
@@ -32,10 +28,74 @@
 	</div>
 </form>
 
+<!-- javascriptTest -->
+<input type="button" class="javascriptTest" value="javascriptTest" onclick="javascripttest()" />
 
+<!-- ajaxTest -->
+<input type="button" class="ajaxTest" value="ajaxTest" onclick="ajaxText()"/>
+
+<input type="button" class="test" value="test" onclick="test()"/>
+
+<p class="content"></p>
 
 <script>
 	
+	function test(){
+		var jsonType = {
+				"key_1" : "value_1",
+				"key_2":"value_2"
+		};
+			
+		$.ajax({
+			type: "get",
+			url: "/otzang/test",
+			data: jsonType,
+			dataType: "json",
+			success: function(data){
+				alert("ajax성공");
+				$('.content').html("<p>"+ data +"</p>");
+				$('.content').html("<p>"+ data.key_1 +"</p>");
+				/* $('.content').html("<p>"+ test.getValue +"</p>");
+				 */
+			},
+			error: function(error){
+				/* $('.content').html("<div>" + textStatus + "(HTTP-" + xhr.statusText + "/" + errorThrown + ")</div>");
+				 */
+				alert("ajax실패");
+			}
+		})
+	}
+	function javascripttest(){
+		console.log("test function 진입");
+		var javascriptTest = $(".javacriptTest").val();
+		console.log(javascriptTest);
+	}
+	function ajaxText()	{
+		console.log("test ajax 진입");
+		var ajaxTest = $(".ajaxTest").val();
+		console.log(ajaxTest);
+		/* ajaxTest를 jsonType으로 변환시켜준다. */
+		var jsonTypeAjaxTest = {"value" : ajaxTest};
+		
+		$.ajax({
+			type: "get",
+			url: "/otzang/ajaxTest",
+			data: jsonTypeAjaxTest,
+			dataType: "json",
+			success: function(result){
+				alert("ajax진입 성공");
+			},
+			error: function(error){
+				alert("ajax진입 실패");
+			}
+		})
+		
+	}
+</script>
+
+
+
+<script>
 	function showbrowserInfo(){
 		var info;
 		info += "navigator.appName";

@@ -13,8 +13,8 @@
 <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@ruby.pe.kr:1521/sgorcl"
-		p:username="d1"		p:password="d1">
+		p:url="jdbc:oracle:thin:@localhost:1521/xe"
+		p:username="hr"		p:password="hr">
 </bean>
 <bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"

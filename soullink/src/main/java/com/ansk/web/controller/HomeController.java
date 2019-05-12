@@ -19,6 +19,13 @@ public class HomeController {
 		return "mainPage";
 	}
 	
+	//로그인페이지
+	@RequestMapping(value= "loginPage", method = RequestMethod.GET)
+	public String loginPage() {
+		logger.info("login page");
+		return "loginPage";
+	}
+	
 	@RequestMapping(value = "popup", method = RequestMethod.GET)
 	public String popup() {
 		logger.info("popup!");

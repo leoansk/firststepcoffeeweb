@@ -30,9 +30,4 @@ public class ProimageController {
 		
 		return null;
 	}
-
-
-
-
-
 }

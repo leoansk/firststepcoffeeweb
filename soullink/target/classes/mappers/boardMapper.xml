@@ -38,8 +38,7 @@
 	<!-- 페이지 처리 -->
 	<select id="listPage" resultType="BoardVO">
 		 <![CDATA[
-		 select 
-		   bno, title, content, writer, regdate, viewcnt
+		 select bno, title, content, writer, regdate, viewcnt
 		 from olp_board 
 		 where bno > 0 
 		 order by bno desc, regdate desc
@@ -60,12 +59,9 @@
 	<!--0보다 큰 bno전체 totalCount를 반환  -->
 	<select id="countPaging" resultType="int">
 		 <![CDATA[
-		 select 
-		   count(bno) 
-		 from 
-		   olp_board 
-		 where 
-		   bno > 0 
+		 select count(bno) 
+		 from olp_board 
+		 where bno > 0 
 		 ]]>
 	</select>
 
@@ -76,7 +72,7 @@
 		  from olp_board 
 		  where bno > 0 
 		]]>
-			<include refid="search"></include>
+		<include refid="search"></include>
 		<![CDATA[ 
 		  order by bno desc
 		  limit #{pageStart}, #{perPageNum}
@@ -89,7 +85,7 @@
 		  from olp_board 
 		  where bno > 0 
 		]]>
-			<include refid="search"></include>
+		<include refid="search"></include>
 	</select>
 	
  
@@ -113,7 +109,7 @@
 				CONCAT('%', #{keyword}, '%'))
 			</if>
 			<if test="searchType == 'tcw'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%')
+				and ( title like CONCAT('%', #{keyword}, '%') 
 				OR
 				content like CONCAT('%', #{keyword}, '%')
 				OR
@@ -129,24 +125,24 @@
 	</update>
 
 <!--
-<update id="updateViewCnt">
-  update tbl_board set viewcnt = viewcnt +1 where bno = #{bno}
-</update>
- 
-<insert id="addAttach">
-	insert into tbl_attach(fullname, bno) values (#{fullName}, LAST_INSERT_ID())
-</insert> 
-
-<select id="getAttach" resultType="string">
-	select fullname from tbl_attach where bno = #{bno} order by regdate
-</select> 
- 
-<delete id="deleteAttach">
-	delete from tbl_attach where bno = #{bno}
-</delete>
-
-<insert id="replaceAttach">
-	insert into tbl_attach(fullname, bno) values (#{fullName}, #{bno})
-</insert>
+	<update id="updateViewCnt">
+	  update tbl_board set viewcnt = viewcnt +1 where bno = #{bno}
+	</update>
+	 
+	<insert id="addAttach">
+		insert into tbl_attach(fullname, bno) values (#{fullName}, LAST_INSERT_ID())
+	</insert> 
+	
+	<select id="getAttach" resultType="string">
+		select fullname from tbl_attach where bno = #{bno} order by regdate
+	</select> 
+	 
+	<delete id="deleteAttach">
+		delete from tbl_attach where bno = #{bno}
+	</delete>
+	
+	<insert id="replaceAttach">
+		insert into tbl_attach(fullname, bno) values (#{fullName}, #{bno})
+	</insert>
 -->
 </mapper>
